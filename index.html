@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FAIZI AI</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0b1220;color:#edf3ff;font-family:Arial,sans-serif}
+header{padding:18px;border-bottom:1px solid #26364e;display:flex;align-items:center;gap:12px}
+.logo{width:45px;height:45px;border-radius:14px;background:linear-gradient(135deg,#20d5ef,#6558f5);display:grid;place-items:center;font-weight:bold;font-size:22px}
+h1{margin:0;font-size:22px}
+small{color:#9fb2cc}
+main{max-width:850px;margin:auto;padding:20px}
+.welcome{text-align:center;margin:40px 0}
+.welcome h2{font-size:28px}
+.tools{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{background:#142137;color:white;border:1px solid #30435e;padding:17px;border-radius:18px;text-align:left}
+.tile b{display:block;margin:10px 0}
+.tile span{font-size:25px}
+#chat{margin:20px 0;display:flex;flex-direction:column;gap:12px}
+.msg{padding:14px;border-radius:16px;max-width:90%;white-space:pre-wrap;line-height:1.5}
+.user{align-self:flex-end;background:#4658b8}
+.bot{align-self:flex-start;background:#18283e;border:1px solid #30435e}
+form{position:sticky;bottom:8px;background:#132137;border:1px solid #354761;border-radius:22px;padding:8px;display:flex;gap:8px}
+textarea{flex:1;background:transparent;color:white;border:0;outline:0;resize:none;padding:12px;font-size:16px}
+button{cursor:pointer}
+.send{background:#5968f5;color:white;border:0;border-radius:16px;padding:14px;font-weight:bold}
+footer{text-align:center;color:#8294ae;padding:20px;font-size:12px}
+@media(min-width:650px){.tools{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">F</div>
+<div><h1>FAIZI AI</h1><small>All-in-One AI Assistant</small></div>
+</header>
+<main>
+<div class="welcome" id="welcome">
+<h2>What can I help you with?</h2>
+<p><small>Ask anything or create something.</small></p>
+</div>
+<div class="tools">
+<button class="tile" onclick="fill('Help me write a story')"><span>✍️</span><b>AI Writer</b><small>Stories and scripts</small></button>
+<button class="tile" onclick="fill('Help me plan a 10–30 minute movie')"><span>🎬</span><b>Movie Maker</b><small>Plan a movie</small></button>
+<button class="tile" onclick="fill('Help me create an image prompt')"><span>🖼️</span><b>Image Studio</b><small>Image ideas</small></button>
+<button class="tile" onclick="fill('Explain this subject simply')"><span>📚</span><b>Study Helper</b><small>Learn anything</small></button>
+<button class="tile" onclick="fill('Help me write code')"><span>💻</span><b>Coding</b><small>Code and websites</small></button>
+<button class="tile" onclick="fill('Translate this text')"><span>🌍</span><b>Translator</b><small>Languages</small></button>
+<button class="tile" onclick="fill('Help me understand a PDF')"><span>📄</span><b>PDF Helper</b><small>Documents</small></button>
+<button class="tile" onclick="fill('Write a voiceover script')"><span>🎙️</span><b>Voice Tools</b><small>Voice scripts</small></button>
+</div>
+<div id="chat"></div>
+</main>
+<form id="form">
+<textarea id="input" rows="1" placeholder="Message FAIZI AI..."></textarea>
+<button class="send">Send</button>
+</form>
+<footer>FAIZI AI • Prototype • AI connection coming next</footer>
+<script>
+const input=document.getElementById('input');
+const chat=document.getElementById('chat');
+function fill(t){input.value=t;input.focus()}
+function add(type,text){
+let d=document.createElement('div');
+d.className='msg '+type;d.textContent=text;
+chat.appendChild(d);d.scrollIntoView({behavior:'smooth'});
+}
+document.getElementById('form').addEventListener('submit',function(e){
+e.preventDefault();
+let t=input.value.trim();if(!t)return;
+add('user',t);input.value='';
+add('bot','Your message has been added. FAIZI AI needs a real AI API connection to answer questions. That is our next step!');
+});
+input.addEventListener('keydown',function(e){
+if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();document.getElementById('form').requestSubmit()}
+});
+</script>
+</body>
+</html>
